@@ -1,46 +1,38 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 namespace AppIconChanger.Demo
 {
     public class Demo : MonoBehaviour
     {
+        [SerializeField] private Text statusText = default;
+
         private string supportsAlternateIcons = "(Empty)";
         private string alternateIconName = "(Empty)";
 
-        public void OnGUI()
+        public void GetSupportsAlternateIcons()
         {
-            GUI.TextArea(new Rect(10, 10, 300, 50), $"supportsAlternateIcons = {supportsAlternateIcons}");
-            GUI.TextArea(new Rect(10, 60, 300, 50), $"alternateIconName = {alternateIconName}");
+            supportsAlternateIcons = iOS.SupportsAlternateIcons.ToString();
+        }
 
-            if (GUI.Button(new Rect(10, 120, 300, 100), "Get SupportsAlternateIcons"))
-            {
-                supportsAlternateIcons = iOS.SupportsAlternateIcons.ToString();
-            }
+        public void GetAlternateIconName()
+        {
+            alternateIconName = iOS.AlternateIconName ?? "(null)";
+        }
 
-            if (GUI.Button(new Rect(10, 220, 300, 100), "Get AlternateIconName"))
-            {
-                alternateIconName = iOS.AlternateIconName ?? "(null)";
-            }
+        public void ChangeIcon(string iconName)
+        {
+            iOS.SetAlternateIconName(iconName);
+        }
 
-            if (GUI.Button(new Rect(10, 320, 300, 100), "Change Icon Red"))
-            {
-                iOS.SetAlternateIconName("demo_red");
-            }
+        public void ChangeIconToDefault()
+        {
+            iOS.SetAlternateIconName(null);
+        }
 
-            if (GUI.Button(new Rect(10, 420, 300, 100), "Change Icon Green"))
-            {
-                iOS.SetAlternateIconName("demo_green");
-            }
-
-            if (GUI.Button(new Rect(10, 520, 300, 100), "Change Icon Blue"))
-            {
-                iOS.SetAlternateIconName("demo_blue");
-            }
-
-            if (GUI.Button(new Rect(10, 620, 300, 100), "Change Icon Default"))
-            {
-                iOS.SetAlternateIconName(null);
-            }
+        public void Update()
+        {
+            statusText.text = $"supportsAlternateIcons = {supportsAlternateIcons}\nalternateIconName = {alternateIconName}";
         }
     }
 }
