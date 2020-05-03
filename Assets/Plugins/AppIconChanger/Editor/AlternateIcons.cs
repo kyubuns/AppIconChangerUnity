@@ -7,11 +7,11 @@ namespace AppIconChanger.Editor
     [CreateAssetMenu]
     public class AlternateIcons : ScriptableObject
     {
-        public Icon[] icons;
+        public AppIcon[] icons;
     }
 
     [Serializable]
-    public class Icon
+    public class AppIcon
     {
         public string name;
         public Texture iPhone180Px; // 180x180px
