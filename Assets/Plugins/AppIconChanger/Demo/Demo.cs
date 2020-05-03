@@ -19,7 +19,7 @@ namespace AppIconChanger.Demo
 
             if (GUI.Button(new Rect(10, 220, 300, 100), "Get AlternateIconName"))
             {
-                alternateIconName = iOS.AlternateIconName.ToString();
+                alternateIconName = iOS.AlternateIconName ?? "(null)";
             }
 
             if (GUI.Button(new Rect(10, 320, 300, 100), "Change Icon Red"))
@@ -35,6 +35,11 @@ namespace AppIconChanger.Demo
             if (GUI.Button(new Rect(10, 520, 300, 100), "Change Icon Blue"))
             {
                 iOS.SetAlternateIconName("demo_blue");
+            }
+
+            if (GUI.Button(new Rect(10, 620, 300, 100), "Change Icon Default"))
+            {
+                iOS.SetAlternateIconName(null);
             }
         }
     }
