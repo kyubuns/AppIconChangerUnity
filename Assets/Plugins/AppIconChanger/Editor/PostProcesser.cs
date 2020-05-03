@@ -29,6 +29,7 @@ namespace AppIconChanger.Editor
             if (appIcons.Count == 0) return;
             UpdateInfoPlist(pathToBuiltProject, appIcons.ToArray());
             CreateAppIcons(appIconDirectoryPath, appIcons.ToArray());
+            UpdatePbxProject(pathToBuiltProject, appIconDirectoryPath, appIcons.ToArray());
         }
 
         private static void UpdateInfoPlist(string pathToBuiltProject, AppIcon[] appIcons)
@@ -95,10 +96,10 @@ namespace AppIconChanger.Editor
 
             foreach (var appIcon in appIcons)
             {
-                CreateAppIcon(appIcon.iPhone120Px, 120, $"{appIcon.name}_iphone@2x", appIconDirectoryPath);
-                CreateAppIcon(appIcon.iPhone180Px, 180, $"{appIcon.name}_iphone@3x", appIconDirectoryPath);
-                CreateAppIcon(appIcon.iPad152Px, 152, $"{appIcon.name}_ipad@2x", appIconDirectoryPath);
-                CreateAppIcon(appIcon.iPad167Px, 167, $"{appIcon.name}_ipadpro@2x", appIconDirectoryPath);
+                CreateAppIcon(appIcon.iPhone120Px, 120, $"{appIcon.name}_iphone@2x.png", appIconDirectoryPath);
+                CreateAppIcon(appIcon.iPhone180Px, 180, $"{appIcon.name}_iphone@3x.png", appIconDirectoryPath);
+                CreateAppIcon(appIcon.iPad152Px, 152, $"{appIcon.name}_ipad@2x.png", appIconDirectoryPath);
+                CreateAppIcon(appIcon.iPad167Px, 167, $"{appIcon.name}_ipadpro@2x.png", appIconDirectoryPath);
             }
         }
 
@@ -107,21 +108,45 @@ namespace AppIconChanger.Editor
             var iconTexture = new Texture2D(0, 0);
             iconTexture.LoadImage(File.ReadAllBytes(AssetDatabase.GetAssetPath(originalTexture)));
 
-            var savePath = Path.Combine(appIconDirectoryPath, $"{fileName}.png");
+            var savePath = Path.Combine(appIconDirectoryPath, fileName);
             if (iconTexture.width != size || iconTexture.height != size)
             {
                 var renderTexture = new RenderTexture(size, size, 24);
+                var tmpRenderTexture = RenderTexture.active;
                 RenderTexture.active = renderTexture;
                 Graphics.Blit(iconTexture, renderTexture);
                 var resizedTexture = new Texture2D(size, size);
                 resizedTexture.ReadPixels(new Rect(0,0,size,size),0,0);
                 resizedTexture.Apply();
+                RenderTexture.active = tmpRenderTexture;
                 renderTexture.Release();
                 iconTexture = resizedTexture;
             }
 
             var pngBytes = iconTexture.EncodeToPNG();
             File.WriteAllBytes(savePath, pngBytes);
+        }
+
+        private static void UpdatePbxProject(string pathToBuiltProject, string appIconDirectoryPath, AppIcon[] appIcons)
+        {
+            var pbxProjectPath = Path.Combine(pathToBuiltProject, "Unity-iPhone.xcodeproj", "project.pbxproj");
+            var pbxProject = new PBXProject();
+            pbxProject.ReadFromFile(pbxProjectPath);
+
+            var targetGuid = pbxProject.GetUnityMainTargetGuid();
+            {
+                foreach (var appIcon in appIcons)
+                {
+                    var fileNames = new[] { $"{appIcon.name}_iphone@2x.png", $"{appIcon.name}_iphone@3x.png", $"{appIcon.name}_ipad@2x.png", $"{appIcon.name}_ipadpro@2x.png" };
+                    foreach (var fileName in fileNames)
+                    {
+                        var fileGuid = pbxProject.AddFile(Path.Combine(appIconDirectoryPath, fileName), $"/AppIconChanger/{fileName}", PBXSourceTree.Build);
+                        pbxProject.AddFileToBuild(targetGuid, fileGuid);
+                    }
+                }
+            }
+
+            pbxProject.WriteToFile(pbxProjectPath);
         }
     }
 }
