@@ -14,10 +14,9 @@ namespace AppIconChanger.Editor
     public class AppIcon
     {
         public string name;
-        public Texture iPhone180Px; // 180x180px
-        public Texture iPhone120Px; // 120x120px
-        public Texture iPad167Px; // 167x167px
-        public Texture iPad152Px; // 152x152px
-        public Texture iPad76Px; // 76x76px
+        public Texture2D iPhone180Px; // 180x180px
+        public Texture2D iPhone120Px; // 120x120px
+        public Texture2D iPad167Px; // 167x167px
+        public Texture2D iPad152Px; // 152x152px
     }
 }
