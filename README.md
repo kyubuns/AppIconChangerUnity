@@ -6,14 +6,30 @@ Change the app icon dynamically in Unity
 - iOS only
 - Target minimum iOS Version >= 10.3
 
-## Installation
+## Instructions
 
-- Download the latest package https://github.com/kyubuns/AppIconChangerUnity/releases.
-- Import AppIconChangerUnity.
+- Import [UnityPackage](https://github.com/kyubuns/AppIconChangerUnity/releases)
+
+## Quickstart
+
+Please check Demo directory for more information.
+
+- Create an `Alternate Icons` from the context menu.
+- Set the icon. It can be set by resolution. Different sizes are automatically resized.
+- The following methods are available
+    - AppIconChanger.iOS.SupportsAlternateIcons
+        - Check to see if the icon can be changed
+        - https://developer.apple.com/documentation/uikit/uiapplication/2806815-supportsalternateicons
+    - AppIconChanger.iOS.AlternateIconName
+        - Check the current icon name (null is the default)
+        - https://developer.apple.com/documentation/uikit/uiapplication/2806808-alternateiconname.
+    - AppIconChanger.iOS.SetAlternateIconName(iconName)
+        - Set the icon (null to restore the default)
+        - https://developer.apple.com/documentation/uikit/uiapplication/2806818-setalternateiconname
 
 ## Requirements
 
-- Unity 2019.3 or higher.
+- Unity 2018.4 or higher.
 
 ## License
 
