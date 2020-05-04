@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEditor;
 
-namespace Development
+namespace AppIconChanger.Development
 {
     public static class PackageExporter
     {
