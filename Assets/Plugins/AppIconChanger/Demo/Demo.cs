@@ -12,22 +12,22 @@ namespace AppIconChanger.Demo
 
         public void GetSupportsAlternateIcons()
         {
-            supportsAlternateIcons = iOS.SupportsAlternateIcons.ToString();
+            supportsAlternateIcons = AppIconChanger.iOS.SupportsAlternateIcons.ToString();
         }
 
         public void GetAlternateIconName()
         {
-            alternateIconName = iOS.AlternateIconName ?? "(null)";
+            alternateIconName = AppIconChanger.iOS.AlternateIconName ?? "(null)";
         }
 
         public void ChangeIcon(string iconName)
         {
-            iOS.SetAlternateIconName(iconName);
+            AppIconChanger.iOS.SetAlternateIconName(iconName);
         }
 
         public void ChangeIconToDefault()
         {
-            iOS.SetAlternateIconName(null);
+            AppIconChanger.iOS.SetAlternateIconName(null);
         }
 
         public void Update()
