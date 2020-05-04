@@ -32,8 +32,12 @@ extern "C"
 	{
 		NSString *nsstringText = AppIconChanger_CreateNSString(iconName);
         if ([nsstringText  isEqual: @""]) nsstringText = nil;
-        [[UIApplication sharedApplication] setAlternateIconName:nsstringText completionHandler:^(NSError * _Nullable error) {
-            NSLog(@"_SetAlternateIconName.Error %@", error);
+        [[UIApplication sharedApplication] setAlternateIconName:nsstringText completionHandler:^(NSError * _Nullable error)
+        {
+            if(error != nil)
+            {
+                NSLog(@"_SetAlternateIconName.Error %@", error);
+            }
         }];
 	}
 }
