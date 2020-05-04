@@ -1,7 +1,7 @@
 # AppIconChangerUnity
 Change the app icon dynamically in Unity
 
-![output](https://user-images.githubusercontent.com/961165/80934851-02bad200-8e05-11ea-9f91-821b5a42def9.gif)
+<img src="https://user-images.githubusercontent.com/961165/80934851-02bad200-8e05-11ea-9f91-821b5a42def9.gif" width="320">
 
 - iOS only
 - Target minimum iOS Version >= 10.3
