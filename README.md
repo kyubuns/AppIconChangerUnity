@@ -3,8 +3,7 @@ Change the app icon dynamically in Unity
 
 <img src="https://user-images.githubusercontent.com/961165/80934851-02bad200-8e05-11ea-9f91-821b5a42def9.gif" width="320">
 
-- iOS only
-- Target minimum iOS Version >= 10.3
+- iOS only, require iOS 10.3 or later
 
 ## Instructions
 
