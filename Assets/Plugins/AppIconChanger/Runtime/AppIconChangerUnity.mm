@@ -1,7 +1,3 @@
-#if ! __has_feature(objc_arc)
-#error This file must be compiled with ARC. Either turn on ARC for the project or use -fobjc-arc flag
-#endif
-
 NSString* AppIconChanger_CreateNSString(const char* string)
 {
 	return [NSString stringWithUTF8String: string ? string : ""];
@@ -19,7 +15,7 @@ extern "C"
 {
 	bool _SupportsAlternateIcons()
 	{
-        return [[UIApplication sharedApplication] supportsAlternateIcons];
+		return [[UIApplication sharedApplication] supportsAlternateIcons];
 	}
 
 	char *_AlternateIconName()
@@ -31,14 +27,14 @@ extern "C"
 	void _SetAlternateIconName(const char* iconName)
 	{
 		NSString *nsstringText = AppIconChanger_CreateNSString(iconName);
-        if ([nsstringText  isEqual: @""]) nsstringText = nil;
-        [[UIApplication sharedApplication] setAlternateIconName:nsstringText completionHandler:^(NSError * _Nullable error)
-        {
-            if(error != nil)
-            {
-                NSLog(@"_SetAlternateIconName.Error %@", error);
-            }
-        }];
+		if ([nsstringText  isEqual: @""]) nsstringText = nil;
+		[[UIApplication sharedApplication] setAlternateIconName:nsstringText completionHandler:^(NSError * _Nullable error)
+		{
+			if(error != nil)
+			{
+				NSLog(@"_SetAlternateIconName.Error %@", error);
+			}
+		}];
 	}
 }
 
