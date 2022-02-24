@@ -32,6 +32,7 @@ Please check Demo directory for more information.
 ## Requirements
 
 - Unity 2018.4 or higher.
+- Xcode 13 or higher.
 
 ## License
 
