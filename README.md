@@ -32,7 +32,7 @@ Support for new icon formats in Xcode13
         - https://developer.apple.com/documentation/uikit/uiapplication/2806815-supportsalternateicons
     - AppIconChanger.iOS.AlternateIconName
         - Check the current icon name (null is the default)
-        - https://developer.apple.com/documentation/uikit/uiapplication/2806808-alternateiconname.
+        - https://developer.apple.com/documentation/uikit/uiapplication/2806808-alternateiconname
     - AppIconChanger.iOS.SetAlternateIconName(iconName)
         - Set the icon (null to restore the default)
         - https://developer.apple.com/documentation/uikit/uiapplication/2806818-setalternateiconname
