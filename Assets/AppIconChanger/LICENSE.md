@@ -1,5 +1,3 @@
-AppIconChangerUnity
-
 MIT License
 
 Copyright (c) 2020 kyubuns

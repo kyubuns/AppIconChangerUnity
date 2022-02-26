@@ -30,7 +30,7 @@ extern "C"
 		if ([nsstringText  isEqual: @""]) nsstringText = nil;
 		[[UIApplication sharedApplication] setAlternateIconName:nsstringText completionHandler:^(NSError * _Nullable error)
 		{
-			if(error != nil)
+			if (error != nil)
 			{
 				NSLog(@"_SetAlternateIconName.Error %@", error);
 			}

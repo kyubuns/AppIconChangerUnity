@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b7b979778f9b4a2bb64806480aec9cb, type: 3}
+  m_Name: DemoBlue
+  m_EditorClassIdentifier: 
+  iconName: demo_blue
+  type: 0
+  source: {fileID: 2800000, guid: 6a37df1834adc4b2c97a4892e9965065, type: 3}
+  iPhoneNotification40px: {fileID: 0}
+  iPhoneNotification60px: {fileID: 0}
+  iPhoneSettings58px: {fileID: 0}
+  iPhoneSettings87px: {fileID: 0}
+  iPhoneSpotlight80px: {fileID: 0}
+  iPhoneSpotlight120px: {fileID: 0}
+  iPhoneApp120px: {fileID: 0}
+  iPhoneApp180px: {fileID: 0}
+  iPadNotifications20px: {fileID: 0}
+  iPadNotifications40px: {fileID: 0}
+  iPadSettings29px: {fileID: 0}
+  iPadSettings58px: {fileID: 0}
+  iPadSpotlight40px: {fileID: 0}
+  iPadSpotlight80px: {fileID: 0}
+  iPadApp76px: {fileID: 0}
+  iPadApp152px: {fileID: 0}
+  iPadProApp167px: {fileID: 0}
+  appStore1024px: {fileID: 0}
