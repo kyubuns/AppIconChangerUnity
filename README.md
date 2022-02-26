@@ -3,7 +3,8 @@
 <a href="https://www.buymeacoffee.com/kyubuns" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
 
 Change the app icon dynamically in Unity  
-Support for new icon formats in Xcode13
+Support for new icon formats in Xcode13  
+-> This means that A/B Test on AppStore is also supported.
 
 <img src="https://user-images.githubusercontent.com/961165/80934851-02bad200-8e05-11ea-9f91-821b5a42def9.gif" width="320">
 
