@@ -89,7 +89,7 @@ namespace AppIconChanger.Editor
             {
                 if (manualTexture == null) return;
                 var path = AssetDatabase.GetAssetPath(manualTexture);
-                File.Copy(path, savePath);
+                File.Copy(path, savePath, true);
             }
         }
 
