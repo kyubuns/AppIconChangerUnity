@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿#if UNITY_IOS
+using System.IO;
 using System.Linq;
 using System.Text;
 using UnityEditor;
@@ -229,3 +230,4 @@ namespace AppIconChanger.Editor
 ";
 	}
 }
+#endif
