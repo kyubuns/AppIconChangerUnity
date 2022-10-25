@@ -34,48 +34,60 @@ namespace AppIconChanger.Editor
         public Texture2D appStore1024px;
 
         [MenuItem("Assets/Create/AppIconChanger/AlternateIcon from Selection...")]
-        private static void CreateAlternateIconFromSelection() {
-            Texture2D[] selectedTexture2Ds = GetFilteredSelection();
-            foreach (Texture2D tex in selectedTexture2Ds) {
-                string assetPath = AssetDatabase.GetAssetPath(tex);
-                if (string.IsNullOrEmpty(assetPath)) {
+        private static void CreateAlternateIconFromSelection()
+        {
+            var selectedTexture2Ds = GetFilteredSelection();
+            foreach (var tex in selectedTexture2Ds)
+            {
+                var assetPath = AssetDatabase.GetAssetPath(tex);
+                if (string.IsNullOrEmpty(assetPath))
+                {
                     continue;
                 }
 
-                string directory = Path.GetDirectoryName(assetPath);
-                string filename = Path.GetFileNameWithoutExtension(assetPath);
-                string basePath = Path.Combine(directory, $"{filename}.asset");
+                var directory = Path.GetDirectoryName(assetPath) ?? "";
+                var filename = Path.GetFileNameWithoutExtension(assetPath);
+                var basePath = Path.Combine(directory, $"{filename}.asset");
 
-                bool overwrite = true;
-                if (File.Exists(basePath)) {
-                    int result = EditorUtility.DisplayDialogComplex("Warning", $"A file already exists at\n\n{basePath}\n\nWhat do you want to do?", "Overwrite", "Generate Unique Name", "Skip");
-                    if (result == 2) {
+                var overwrite = true;
+                if (File.Exists(basePath))
+                {
+                    var result = EditorUtility.DisplayDialogComplex("Warning", $"A file already exists at\n\n{basePath}\n\nWhat do you want to do?", "Overwrite", "Generate Unique Name", "Skip");
+                    if (result == 2)
+                    {
                         continue;
                     }
+
                     overwrite = (result == 0);
                 }
-                
-                if (!overwrite) {
+
+                if (!overwrite)
+                {
                     basePath = AssetDatabase.GenerateUniqueAssetPath(basePath);
                 }
 
-                AlternateIcon icon = ScriptableObject.CreateInstance<AlternateIcon>();
+                var icon = ScriptableObject.CreateInstance<AlternateIcon>();
                 icon.iconName = filename;
                 icon.source = tex;
-                if (overwrite) {
+                if (overwrite)
+                {
                     AssetDatabase.DeleteAsset(basePath);
                 }
+
                 AssetDatabase.CreateAsset(icon, basePath);
             }
+
             AssetDatabase.Refresh(ImportAssetOptions.ForceUpdate);
         }
 
         [MenuItem("Assets/Create/AppIconChanger/AlternateIcon from Selection...", isValidateFunction: true)]
-        private static bool CanCreateAlternateIconFromSelection() {
+        private static bool CanCreateAlternateIconFromSelection()
+        {
             return GetFilteredSelection().Length > 0;
         }
 
-        private static Texture2D[] GetFilteredSelection() {
+        private static Texture2D[] GetFilteredSelection()
+        {
             return Selection.GetFiltered<Texture2D>(SelectionMode.Assets | SelectionMode.TopLevel);
         }
     }
