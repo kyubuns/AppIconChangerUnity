@@ -25,10 +25,10 @@ namespace AppIconChanger.Editor
 
             var imagesXcassetsDirectoryPath = Path.Combine(pathToBuiltProject, "Unity-iPhone", "Images.xcassets");
 
-			var iconNames = new List<string>();
+            var iconNames = new List<string>();
             foreach (var alternateIcon in alternateIcons)
             {
-				iconNames.Add(alternateIcon.iconName);
+                iconNames.Add(alternateIcon.iconName);
                 var iconDirectoryPath = Path.Combine(imagesXcassetsDirectoryPath, $"{alternateIcon.iconName}.appiconset");
                 Directory.CreateDirectory(iconDirectoryPath);
 
@@ -69,12 +69,12 @@ namespace AppIconChanger.Editor
             var pbxProjectPath = Path.Combine(pathToBuiltProject, "Unity-iPhone.xcodeproj", "project.pbxproj");
             var pbxProject = new PBXProject();
             pbxProject.ReadFromFile(pbxProjectPath);
- 
+
             var targetGuid = pbxProject.GetUnityMainTargetGuid();
             pbxProject.SetBuildProperty(targetGuid, "ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS", "YES");
 
-			string joinedIconNames = string.Join(" ", iconNames);
-			pbxProject.SetBuildProperty(targetGuid, "ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES", joinedIconNames);
+            var joinedIconNames = string.Join(" ", iconNames);
+            pbxProject.SetBuildProperty(targetGuid, "ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES", joinedIconNames);
 
             pbxProject.WriteToFile(pbxProjectPath);
         }
