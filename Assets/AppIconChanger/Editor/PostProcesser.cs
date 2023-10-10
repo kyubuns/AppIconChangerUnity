@@ -88,18 +88,23 @@ namespace AppIconChanger.Editor
 
                 if (iconTexture.width != size || iconTexture.height != size)
                 {
-                    var renderTexture = new RenderTexture(size, size, 24);
-                    var tmpRenderTexture = RenderTexture.active;
-                    RenderTexture.active = renderTexture;
-                    Graphics.Blit(iconTexture, renderTexture);
-                    var resizedTexture = new Texture2D(size, size);
-                    resizedTexture.ReadPixels(new Rect(0,0,size,size),0,0);
-                    resizedTexture.Apply();
-                    RenderTexture.active = tmpRenderTexture;
-                    renderTexture.Release();
-                    iconTexture = resizedTexture;
+				    var pixels = sourceTexture.GetPixels(0, 0, sourceTexture.width, sourceTexture.height);
+				    var resizedPixels = new Color[size * size];
+				    for (var i = 0; i < size; i++) 
+				    {
+						for (var j = 0; j < size; j++)
+						{
+							resizedPixels[i * size + j] = pixels[Mathf.FloorToInt(i / (float)size * iconTexture.height) * iconTexture.width + Mathf.FloorToInt(j / (float)size * iconTexture.width)];
+						}
+				    }
+		        	var newTexture = new Texture2D(size, size)
+		        	{
+			        	filterMode = FilterMode.Bilinear
+		        	};
+		        	newTexture.SetPixels(resizedPixels);
+		        	newTexture.Apply();                    
+                    iconTexture = newTexture;
                 }
-
                 var pngBytes = iconTexture.EncodeToPNG();
                 File.WriteAllBytes(savePath, pngBytes);
             }
