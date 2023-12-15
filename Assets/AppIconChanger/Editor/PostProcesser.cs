@@ -71,8 +71,6 @@ namespace AppIconChanger.Editor
             pbxProject.ReadFromFile(pbxProjectPath);
 
             var targetGuid = pbxProject.GetUnityMainTargetGuid();
-            pbxProject.SetBuildProperty(targetGuid, "ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS", "YES");
-
             var joinedIconNames = string.Join(" ", iconNames);
             pbxProject.SetBuildProperty(targetGuid, "ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES", joinedIconNames);
 
