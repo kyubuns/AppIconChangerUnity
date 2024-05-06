@@ -18,7 +18,7 @@ Support for new icon formats in Xcode13
 
 ## Instructions
 
-- Import by PackageManager `https://github.com/kyubuns/AppIconChangerUnity.git?path=Assets/AppIconChanger`
+- Import by PackageManager `https://github.com/kyubuns/AppIconChangerUnity.git#disable_popup?path=Assets/AppIconChanger`
   - (Optional) You can import a demo scene on PackageManager.
 <img width="813" alt="Screen Shot 2022-02-25 at 15 01 24" src="https://user-images.githubusercontent.com/961165/155662881-60ea3785-d3e7-4bda-9da8-3f8208d27390.png">
 
