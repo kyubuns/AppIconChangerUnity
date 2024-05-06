@@ -2,6 +2,9 @@
 > I don't know if the implementation of this branch is Apple-approved.  
 > Use at your own risk.  
 > https://stackoverflow.com/questions/43356570/alternate-icon-in-ios-10-3-avoid-notification-dialog-for-icon-change
+>
+> Usually use the main branch.  
+> https://github.com/kyubuns/AppIconChangerUnity
 
 # AppIconChangerUnity
 
