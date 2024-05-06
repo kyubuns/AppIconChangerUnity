@@ -43,6 +43,11 @@ When the Type of `AlternateIcon` is set to Auto Generate, the icon will be autom
 If you want to control it in detail, you can change the Type to Manual.  
 <img width="250" alt="Screen Shot 2022-02-26 at 13 16 15" src="https://user-images.githubusercontent.com/961165/155829238-db5b160f-ed8a-4b60-a0e3-58df7921b42e.png">
 
+### How to disable native popup?
+
+It cannot be disabled because it is a popup that iOS displays automatically.  
+But... https://github.com/kyubuns/AppIconChangerUnity/issues/11
+
 ## Requirements
 
 - Unity 2020.3 or higher.
