@@ -27,14 +27,23 @@ extern "C"
 	void _SetAlternateIconName(const char* iconName)
 	{
 		NSString *nsstringText = AppIconChanger_CreateNSString(iconName);
-		if ([nsstringText  isEqual: @""]) nsstringText = nil;
-		[[UIApplication sharedApplication] setAlternateIconName:nsstringText completionHandler:^(NSError * _Nullable error)
+
+		// https://stackoverflow.com/a/49730130/4836063
+		if ([[UIApplication sharedApplication] respondsToSelector:@selector(supportsAlternateIcons)] && [[UIApplication sharedApplication] supportsAlternateIcons])
 		{
-			if (error != nil)
+			NSMutableString *selectorString = [[NSMutableString alloc] initWithCapacity:40];
+			[selectorString appendString:@"_setAlternate"];
+			[selectorString appendString:@"IconName:"];
+			[selectorString appendString:@"completionHandler:"];
+
+			SEL selector = NSSelectorFromString(selectorString);
+			IMP imp = [[UIApplication sharedApplication] methodForSelector:selector];
+			void (*func)(id, SEL, id, id) = (void (*)(id, SEL, id, id))imp;
+			if (func)
 			{
-				NSLog(@"_SetAlternateIconName.Error %@", error);
+				func([UIApplication sharedApplication], selector, nsstringText, ^(NSError * _Nullable error) {});
 			}
-		}];
+		}
 	}
 }
 
