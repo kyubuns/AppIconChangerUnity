@@ -1,7 +1,7 @@
 {
   "name": "dev.kyubuns.appiconchangerunity",
   "displayName": "AppIconChangerUnity",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "unity": "2020.3",
   "description": "Change the app icon dynamically in Unity (iOS only)",
   "documentationUrl": "https://github.com/kyubuns/AppIconChangerUnity",
