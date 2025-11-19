@@ -21,6 +21,7 @@ Support for new icon formats in Xcode13
 <img width="600" alt="Screen Shot 2022-02-26 at 13 15 02" src="https://user-images.githubusercontent.com/961165/155829253-d5da01b8-5491-444e-adea-385a4a3389c6.png">
 
 - Set the name and icon
+  - ⚠️ Make sure your image has read/write enabled [`Image Import Settings > Advanced > Read/Write`](https://docs.unity3d.com/6000.2/Documentation/ScriptReference/Texture-isReadable.html)
 
 <img width="400" alt="Screen Shot 2022-02-26 at 13 15 47" src="https://user-images.githubusercontent.com/961165/155829249-b36feac2-17ee-4f4b-bdc2-ab00b50450c4.png">
 
