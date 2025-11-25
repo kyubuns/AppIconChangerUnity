@@ -78,41 +78,93 @@ namespace AppIconChanger.Editor
         }
 
         private static void SaveIcon(AlternateIconType type, Texture2D sourceTexture, Texture2D manualTexture, int size, string savePath)
-        {
-            if (type == AlternateIconType.AutoGenerate)
-            {
-                var iconTexture = new Texture2D(0, 0);
-                iconTexture.LoadImage(File.ReadAllBytes(AssetDatabase.GetAssetPath(sourceTexture)));
+		{
+		    if (type == AlternateIconType.AutoGenerate)
+		    {
+		        // 1. Load Source Data safely
+		        var tex = new Texture2D(2, 2);
+		        var originalBytes = File.ReadAllBytes(AssetDatabase.GetAssetPath(sourceTexture));
+		        tex.LoadImage(originalBytes); // Automatically resizes 'tex' to match image dimensions
 
-                if (iconTexture.width != size || iconTexture.height != size)
-                {
-                    var pixels = sourceTexture.GetPixels(0, 0, sourceTexture.width, sourceTexture.height);
-                    var resizedPixels = new Color[size * size];
-                    for (var i = 0; i < size; i++)
-                    {
-                        for (var j = 0; j < size; j++)
-                        {
-                            resizedPixels[i * size + j] = pixels[Mathf.FloorToInt(i / (float)size * iconTexture.height) * iconTexture.width + Mathf.FloorToInt(j / (float)size * iconTexture.width)];
-                        }
-                    }
-                    var newTexture = new Texture2D(size, size)
-                    {
-                        filterMode = FilterMode.Bilinear
-                    };
-                    newTexture.SetPixels(resizedPixels);
-                    newTexture.Apply();
-                    iconTexture = newTexture;
-                }
-                var pngBytes = iconTexture.EncodeToPNG();
-                File.WriteAllBytes(savePath, pngBytes);
-            }
-            else
-            {
-                if (manualTexture == null) return;
-                var path = AssetDatabase.GetAssetPath(manualTexture);
-                File.Copy(path, savePath, true);
-            }
-        }
+		        // 2. High-Quality Downscale (Area Averaging)
+		        if (tex.width != size || tex.height != size)
+		        {
+		            Color[] sourceColors = tex.GetPixels();
+		            Color[] newColors = new Color[size * size];
+		            
+		            int sourceW = tex.width;
+		            int sourceH = tex.height;
+		            
+		            // Calculate how many source pixels correspond to one new pixel
+		            float ratioX = (float)sourceW / size;
+		            float ratioY = (float)sourceH / size;
+
+		            for (int y = 0; y < size; y++)
+		            {
+		                // Calculate the Y range in the source image for this specific new pixel
+		                int startY = (int)(y * ratioY);
+		                int endY = (int)((y + 1) * ratioY);
+		                // Clamp to ensure we don't go outside the image
+		                if (endY >= sourceH) endY = sourceH - 1; 
+
+		                for (int x = 0; x < size; x++)
+		                {
+		                    // Calculate the X range
+		                    int startX = (int)(x * ratioX);
+		                    int endX = (int)((x + 1) * ratioX);
+		                    if (endX >= sourceW) endX = sourceW - 1;
+
+		                    // Sum up all pixels in this block
+		                    float r = 0, g = 0, b = 0, a = 0;
+		                    int count = 0;
+
+		                    for (int uy = startY; uy <= endY; uy++)
+		                    {
+		                        // Pre-calculate index for performance
+		                        int yIndex = uy * sourceW; 
+		                        
+		                        for (int ux = startX; ux <= endX; ux++)
+		                        {
+		                            Color c = sourceColors[yIndex + ux];
+		                            r += c.r;
+		                            g += c.g;
+		                            b += c.b;
+		                            a += c.a;
+		                            count++;
+		                        }
+		                    }
+
+		                    // Average the accumulated colors
+		                    if (count > 0)
+		                    {
+		                        newColors[y * size + x] = new Color(r / count, g / count, b / count, a / count);
+		                    }
+		                }
+		            }
+
+		            // Create new texture container
+		            var resizedTex = new Texture2D(size, size);
+		            resizedTex.SetPixels(newColors);
+		            resizedTex.Apply();
+
+		            // Swap references and clean up
+		            Object.DestroyImmediate(tex);
+		            tex = resizedTex;
+		        }
+
+		        // 3. Encode and Save
+		        var pngBytes = tex.EncodeToPNG();
+		        File.WriteAllBytes(savePath, pngBytes);
+		        
+		        Object.DestroyImmediate(tex);
+		    }
+		    else
+		    {
+		        if (manualTexture == null) return;
+		        var path = AssetDatabase.GetAssetPath(manualTexture);
+		        File.Copy(path, savePath, true);
+		    }
+		}
 
         private const string ContentsJsonText = @"{
   ""images"" : [
