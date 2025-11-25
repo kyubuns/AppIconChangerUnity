@@ -18,7 +18,8 @@ namespace AppIconChanger.Editor
             if (typed.type == AlternateIconType.AutoGenerate)
             {
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("source"));
-                EditorGUILayout.HelpBox("If you build this project using the -nographics property, the automatic icon resizing process will not work. Please use Manual mode.", MessageType.Warning);
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("resamplingMethod"), new GUIContent("Resampling Method"));
+                EditorGUILayout.HelpBox("If you build this project using the -nographics property, the automatic icon resizing process will not work unless the logic is CPU-based (which both currently are).", MessageType.Info);
             }
             else
             {

@@ -38,32 +38,35 @@ namespace AppIconChanger.Editor
                 contentsJson = contentsJson.Replace("iPadContents", PlayerSettings.iOS.targetDevice == iOSTargetDevice.iPadOnly || PlayerSettings.iOS.targetDevice == iOSTargetDevice.iPhoneAndiPad ? ContentsiPadJsonText : string.Empty);
                 File.WriteAllText(contentsJsonPath, contentsJson, Encoding.UTF8);
 
+                // Pass the resampling method from the asset to the SaveIcon method
+                var algorithm = alternateIcon.resamplingMethod;
+
                 if (PlayerSettings.iOS.targetDevice == iOSTargetDevice.iPhoneOnly || PlayerSettings.iOS.targetDevice == iOSTargetDevice.iPhoneAndiPad)
                 {
-                    SaveIcon(alternateIcon.type, alternateIcon.source, alternateIcon.iPhoneNotification40px, 40, Path.Combine(iconDirectoryPath, "iPhoneNotification40px.png"));
-                    SaveIcon(alternateIcon.type, alternateIcon.source, alternateIcon.iPhoneNotification60px, 60, Path.Combine(iconDirectoryPath, "iPhoneNotification60px.png"));
-                    SaveIcon(alternateIcon.type, alternateIcon.source, alternateIcon.iPhoneSettings58px, 58, Path.Combine(iconDirectoryPath, "iPhoneSettings58px.png"));
-                    SaveIcon(alternateIcon.type, alternateIcon.source, alternateIcon.iPhoneSettings87px, 87, Path.Combine(iconDirectoryPath, "iPhoneSettings87px.png"));
-                    SaveIcon(alternateIcon.type, alternateIcon.source, alternateIcon.iPhoneSpotlight80px, 80, Path.Combine(iconDirectoryPath, "iPhoneSpotlight80px.png"));
-                    SaveIcon(alternateIcon.type, alternateIcon.source, alternateIcon.iPhoneSpotlight120px, 120, Path.Combine(iconDirectoryPath, "iPhoneSpotlight120px.png"));
-                    SaveIcon(alternateIcon.type, alternateIcon.source, alternateIcon.iPhoneApp120px, 120, Path.Combine(iconDirectoryPath, "iPhoneApp120px.png"));
-                    SaveIcon(alternateIcon.type, alternateIcon.source, alternateIcon.iPhoneApp180px, 180, Path.Combine(iconDirectoryPath, "iPhoneApp180px.png"));
+                    SaveIcon(alternateIcon.type, alternateIcon.source, alternateIcon.iPhoneNotification40px, 40, Path.Combine(iconDirectoryPath, "iPhoneNotification40px.png"), algorithm);
+                    SaveIcon(alternateIcon.type, alternateIcon.source, alternateIcon.iPhoneNotification60px, 60, Path.Combine(iconDirectoryPath, "iPhoneNotification60px.png"), algorithm);
+                    SaveIcon(alternateIcon.type, alternateIcon.source, alternateIcon.iPhoneSettings58px, 58, Path.Combine(iconDirectoryPath, "iPhoneSettings58px.png"), algorithm);
+                    SaveIcon(alternateIcon.type, alternateIcon.source, alternateIcon.iPhoneSettings87px, 87, Path.Combine(iconDirectoryPath, "iPhoneSettings87px.png"), algorithm);
+                    SaveIcon(alternateIcon.type, alternateIcon.source, alternateIcon.iPhoneSpotlight80px, 80, Path.Combine(iconDirectoryPath, "iPhoneSpotlight80px.png"), algorithm);
+                    SaveIcon(alternateIcon.type, alternateIcon.source, alternateIcon.iPhoneSpotlight120px, 120, Path.Combine(iconDirectoryPath, "iPhoneSpotlight120px.png"), algorithm);
+                    SaveIcon(alternateIcon.type, alternateIcon.source, alternateIcon.iPhoneApp120px, 120, Path.Combine(iconDirectoryPath, "iPhoneApp120px.png"), algorithm);
+                    SaveIcon(alternateIcon.type, alternateIcon.source, alternateIcon.iPhoneApp180px, 180, Path.Combine(iconDirectoryPath, "iPhoneApp180px.png"), algorithm);
                 }
                 
                 if (PlayerSettings.iOS.targetDevice == iOSTargetDevice.iPadOnly || PlayerSettings.iOS.targetDevice == iOSTargetDevice.iPhoneAndiPad)
                 {
-                    SaveIcon(alternateIcon.type, alternateIcon.source, alternateIcon.iPadNotifications20px, 20, Path.Combine(iconDirectoryPath, "iPadNotifications20px.png"));
-                    SaveIcon(alternateIcon.type, alternateIcon.source, alternateIcon.iPadNotifications40px, 40, Path.Combine(iconDirectoryPath, "iPadNotifications40px.png"));
-                    SaveIcon(alternateIcon.type, alternateIcon.source, alternateIcon.iPadSettings29px, 29, Path.Combine(iconDirectoryPath, "iPadSettings29px.png"));
-                    SaveIcon(alternateIcon.type, alternateIcon.source, alternateIcon.iPadSettings58px, 58, Path.Combine(iconDirectoryPath, "iPadSettings58px.png"));
-                    SaveIcon(alternateIcon.type, alternateIcon.source, alternateIcon.iPadSpotlight40px, 40, Path.Combine(iconDirectoryPath, "iPadSpotlight40px.png"));
-                    SaveIcon(alternateIcon.type, alternateIcon.source, alternateIcon.iPadSpotlight80px, 80, Path.Combine(iconDirectoryPath, "iPadSpotlight80px.png"));
-                    SaveIcon(alternateIcon.type, alternateIcon.source, alternateIcon.iPadApp76px, 76, Path.Combine(iconDirectoryPath, "iPadApp76px.png"));
-                    SaveIcon(alternateIcon.type, alternateIcon.source, alternateIcon.iPadApp152px, 152, Path.Combine(iconDirectoryPath, "iPadApp152px.png"));
-                    SaveIcon(alternateIcon.type, alternateIcon.source, alternateIcon.iPadProApp167px, 167, Path.Combine(iconDirectoryPath, "iPadProApp167px.png"));
+                    SaveIcon(alternateIcon.type, alternateIcon.source, alternateIcon.iPadNotifications20px, 20, Path.Combine(iconDirectoryPath, "iPadNotifications20px.png"), algorithm);
+                    SaveIcon(alternateIcon.type, alternateIcon.source, alternateIcon.iPadNotifications40px, 40, Path.Combine(iconDirectoryPath, "iPadNotifications40px.png"), algorithm);
+                    SaveIcon(alternateIcon.type, alternateIcon.source, alternateIcon.iPadSettings29px, 29, Path.Combine(iconDirectoryPath, "iPadSettings29px.png"), algorithm);
+                    SaveIcon(alternateIcon.type, alternateIcon.source, alternateIcon.iPadSettings58px, 58, Path.Combine(iconDirectoryPath, "iPadSettings58px.png"), algorithm);
+                    SaveIcon(alternateIcon.type, alternateIcon.source, alternateIcon.iPadSpotlight40px, 40, Path.Combine(iconDirectoryPath, "iPadSpotlight40px.png"), algorithm);
+                    SaveIcon(alternateIcon.type, alternateIcon.source, alternateIcon.iPadSpotlight80px, 80, Path.Combine(iconDirectoryPath, "iPadSpotlight80px.png"), algorithm);
+                    SaveIcon(alternateIcon.type, alternateIcon.source, alternateIcon.iPadApp76px, 76, Path.Combine(iconDirectoryPath, "iPadApp76px.png"), algorithm);
+                    SaveIcon(alternateIcon.type, alternateIcon.source, alternateIcon.iPadApp152px, 152, Path.Combine(iconDirectoryPath, "iPadApp152px.png"), algorithm);
+                    SaveIcon(alternateIcon.type, alternateIcon.source, alternateIcon.iPadProApp167px, 167, Path.Combine(iconDirectoryPath, "iPadProApp167px.png"), algorithm);
                 }
                 
-                SaveIcon(alternateIcon.type, alternateIcon.source, alternateIcon.appStore1024px, 1024, Path.Combine(iconDirectoryPath, "appStore1024px.png"));
+                SaveIcon(alternateIcon.type, alternateIcon.source, alternateIcon.appStore1024px, 1024, Path.Combine(iconDirectoryPath, "appStore1024px.png"), algorithm);
             }
 
             var pbxProjectPath = Path.Combine(pathToBuiltProject, "Unity-iPhone.xcodeproj", "project.pbxproj");
@@ -77,94 +80,105 @@ namespace AppIconChanger.Editor
             pbxProject.WriteToFile(pbxProjectPath);
         }
 
-        private static void SaveIcon(AlternateIconType type, Texture2D sourceTexture, Texture2D manualTexture, int size, string savePath)
-		{
-		    if (type == AlternateIconType.AutoGenerate)
-		    {
-		        // 1. Load Source Data safely
-		        var tex = new Texture2D(2, 2);
-		        var originalBytes = File.ReadAllBytes(AssetDatabase.GetAssetPath(sourceTexture));
-		        tex.LoadImage(originalBytes); // Automatically resizes 'tex' to match image dimensions
+        private static void SaveIcon(AlternateIconType type, Texture2D sourceTexture, Texture2D manualTexture, int size, string savePath, ResamplingAlgorithm method)
+        {
+            if (type == AlternateIconType.AutoGenerate)
+            {
+                // 1. Load Source Data safely (Common for both methods)
+                var tex = new Texture2D(2, 2);
+                var originalBytes = File.ReadAllBytes(AssetDatabase.GetAssetPath(sourceTexture));
+                tex.LoadImage(originalBytes); // Automatically resizes 'tex' to match image dimensions
 
-		        // 2. High-Quality Downscale (Area Averaging)
-		        if (tex.width != size || tex.height != size)
-		        {
-		            Color[] sourceColors = tex.GetPixels();
-		            Color[] newColors = new Color[size * size];
-		            
-		            int sourceW = tex.width;
-		            int sourceH = tex.height;
-		            
-		            // Calculate how many source pixels correspond to one new pixel
-		            float ratioX = (float)sourceW / size;
-		            float ratioY = (float)sourceH / size;
+                if (tex.width != size || tex.height != size)
+                {
+                    Color[] newColors = new Color[size * size];
+                    Color[] sourceColors = tex.GetPixels();
+                    
+                    if (method == ResamplingAlgorithm.BoxSampling)
+                    {
+                        // --- New Method: Box Sampling (Area Averaging) ---
+                        // Good for downscaling, reduces aliasing/dithering
+                        int sourceW = tex.width;
+                        int sourceH = tex.height;
+                        
+                        float ratioX = (float)sourceW / size;
+                        float ratioY = (float)sourceH / size;
 
-		            for (int y = 0; y < size; y++)
-		            {
-		                // Calculate the Y range in the source image for this specific new pixel
-		                int startY = (int)(y * ratioY);
-		                int endY = (int)((y + 1) * ratioY);
-		                // Clamp to ensure we don't go outside the image
-		                if (endY >= sourceH) endY = sourceH - 1; 
+                        for (int y = 0; y < size; y++)
+                        {
+                            int startY = (int)(y * ratioY);
+                            int endY = (int)((y + 1) * ratioY);
+                            if (endY >= sourceH) endY = sourceH - 1; 
 
-		                for (int x = 0; x < size; x++)
-		                {
-		                    // Calculate the X range
-		                    int startX = (int)(x * ratioX);
-		                    int endX = (int)((x + 1) * ratioX);
-		                    if (endX >= sourceW) endX = sourceW - 1;
+                            for (int x = 0; x < size; x++)
+                            {
+                                int startX = (int)(x * ratioX);
+                                int endX = (int)((x + 1) * ratioX);
+                                if (endX >= sourceW) endX = sourceW - 1;
 
-		                    // Sum up all pixels in this block
-		                    float r = 0, g = 0, b = 0, a = 0;
-		                    int count = 0;
+                                float r = 0, g = 0, b = 0, a = 0;
+                                int count = 0;
 
-		                    for (int uy = startY; uy <= endY; uy++)
-		                    {
-		                        // Pre-calculate index for performance
-		                        int yIndex = uy * sourceW; 
-		                        
-		                        for (int ux = startX; ux <= endX; ux++)
-		                        {
-		                            Color c = sourceColors[yIndex + ux];
-		                            r += c.r;
-		                            g += c.g;
-		                            b += c.b;
-		                            a += c.a;
-		                            count++;
-		                        }
-		                    }
+                                for (int uy = startY; uy <= endY; uy++)
+                                {
+                                    int yIndex = uy * sourceW; 
+                                    for (int ux = startX; ux <= endX; ux++)
+                                    {
+                                        Color c = sourceColors[yIndex + ux];
+                                        r += c.r; g += c.g; b += c.b; a += c.a;
+                                        count++;
+                                    }
+                                }
 
-		                    // Average the accumulated colors
-		                    if (count > 0)
-		                    {
-		                        newColors[y * size + x] = new Color(r / count, g / count, b / count, a / count);
-		                    }
-		                }
-		            }
+                                if (count > 0)
+                                {
+                                    newColors[y * size + x] = new Color(r / count, g / count, b / count, a / count);
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        // --- Old Method: Nearest Neighbor ---
+                        // Keeps pixels sharp, but causes severe aliasing when downscaling
+                        int width = tex.width;
+                        int height = tex.height;
+                        
+                        for (var i = 0; i < size; i++)
+                        {
+                            for (var j = 0; j < size; j++)
+                            {
+                                newColors[i * size + j] = sourceColors[Mathf.FloorToInt(i / (float)size * height) * width + Mathf.FloorToInt(j / (float)size * width)];
+                            }
+                        }
+                    }
 
-		            // Create new texture container
-		            var resizedTex = new Texture2D(size, size);
-		            resizedTex.SetPixels(newColors);
-		            resizedTex.Apply();
+                    // Apply the calculated pixels
+                    var newTexture = new Texture2D(size, size)
+                    {
+                        filterMode = FilterMode.Bilinear
+                    };
+                    newTexture.SetPixels(newColors);
+                    newTexture.Apply();
+                    
+                    // Swap references for cleanup
+                    Object.DestroyImmediate(tex);
+                    tex = newTexture;
+                }
 
-		            // Swap references and clean up
-		            Object.DestroyImmediate(tex);
-		            tex = resizedTex;
-		        }
-
-		        // 3. Encode and Save
-		        var pngBytes = tex.EncodeToPNG();
-		        File.WriteAllBytes(savePath, pngBytes);
-		        
-		        Object.DestroyImmediate(tex);
-		    }
-		    else
-		    {
-		        if (manualTexture == null) return;
-		        var path = AssetDatabase.GetAssetPath(manualTexture);
-		        File.Copy(path, savePath, true);
-		    }
-		}
+                // Encode and Save
+                var pngBytes = tex.EncodeToPNG();
+                File.WriteAllBytes(savePath, pngBytes);
+                
+                Object.DestroyImmediate(tex);
+            }
+            else
+            {
+                if (manualTexture == null) return;
+                var path = AssetDatabase.GetAssetPath(manualTexture);
+                File.Copy(path, savePath, true);
+            }
+        }
 
         private const string ContentsJsonText = @"{
   ""images"" : [
