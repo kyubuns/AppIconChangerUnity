@@ -12,6 +12,8 @@ namespace AppIconChanger.Editor
     {
         public string iconName;
         public AlternateIconType type;
+        
+        public ResamplingAlgorithm resamplingMethod = ResamplingAlgorithm.BoxSampling;
 
         public Texture2D source;
         public Texture2D iPhoneNotification40px;
@@ -96,5 +98,11 @@ namespace AppIconChanger.Editor
     {
         AutoGenerate,
         Manual,
+    }
+
+    public enum ResamplingAlgorithm
+    {
+        BoxSampling,     // High Quality (Average)
+        NearestNeighbor  // Sharp/Pixelated (Legacy)
     }
 }
