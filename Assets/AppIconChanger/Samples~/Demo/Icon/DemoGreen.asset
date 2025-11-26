@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iconName: demo_green
   type: 0
+  resamplingMethod: 0
   source: {fileID: 2800000, guid: e5a7f4c8c7fdb42089b529c82c0e3a3e, type: 3}
   iPhoneNotification40px: {fileID: 0}
   iPhoneNotification60px: {fileID: 0}
